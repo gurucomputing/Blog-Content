@@ -1,0 +1,19 @@
+auth.<your-domain>.com {
+	redir / /admin #redirects automatically to admin login 
+	# respond / 204 #returns a blank page for the base subdomain
+	reverse_proxy http://fusionauth:9011 {
+		header_up X-Forwarded-Port 443
+	}
+}
+kb.<your-domain>.com {
+	reverse_proxy http://outline
+}
+kbdata-admin.<your-domain>.com {
+	@privateSubnets {
+		remote_ip private_ranges
+	}
+	reverse_proxy @privateSubnets http://outline_minio:9001
+}
+kbdata.<your-domain>.com {
+	reverse_proxy http://outline_minio:9000
+}

@@ -1,0 +1,21 @@
+services:
+  caddy:
+    image: caddy:latest
+    container_name: caddy
+    restart: unless-stopped
+    security_opt:
+      - label:disable
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./container-config:/etc/caddy
+      - ./container-data:/data
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - reverseproxy-nw
+
+networks:
+  reverseproxy-nw:
+    external: true
