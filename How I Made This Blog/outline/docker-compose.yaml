@@ -51,7 +51,7 @@ services:
     user: root
     restart: always
     container_name: outline
-    command: sh -c "yarn db:migrate --env=production-ssl-disabled && yarn start --env=production-ssl-disabled"
+    command: sh -c "yarn start --env=production-ssl-disabled"
     depends_on:
       - outline_postgres
       - outline_redis
