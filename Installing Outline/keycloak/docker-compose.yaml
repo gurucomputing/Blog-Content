@@ -1,0 +1,46 @@
+services:
+  keycloak:
+      container_name: keycloak
+      image: quay.io/keycloak/keycloak:latest
+      restart: always
+      environment:
+        KC_DB: postgres
+        KC_DB_URL: jdbc:postgresql://keycloak-db:5432/keycloak
+        KC_DB_USER: keycloak
+        KC_DB_SCHEMA: public
+        KC_DB_PASSWORD: ${KC_DB_PASSWORD}
+        KC_HOSTNAME: ${KC_HOSTNAME}
+        KEYCLOAK_ADMIN: admin
+        KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
+        KC_PROXY: edge
+      # ports:
+        # - 8080:8080
+      depends_on:
+        - keycloak-db
+      networks:
+        - reverseproxy-nw
+        - keycloak-nw
+      command: start
+
+  keycloak-db:
+      container_name: keycloak-db
+      image: postgres
+      restart: always
+      security_opt:
+        - label:disable
+      volumes:
+        - ./container-data/db:/var/lib/postgresql/data
+        - /etc/localtime:/etc/localtime:ro
+      environment:
+        POSTGRES_DB: keycloak
+        POSTGRES_USER: keycloak
+        POSTGRES_PASSWORD: ${KC_DB_PASSWORD}
+    #   ports:
+        # - 5432:5432
+      networks:
+        - keycloak-nw
+
+networks:
+    keycloak-nw:
+    reverseproxy-nw:
+        external: true
