@@ -1,0 +1,82 @@
+site_name: Gurucomputing Blog
+theme:
+  name: 'material'
+  custom_dir: overrides
+  features:
+    - content.code.copy
+    - navigation.footer
+  logo: assets/favicon.png
+  favicon: assets/favicon.png
+
+
+nav:
+  - 'Home': 'index.md'
+  - Homelab Backup Strategy:
+    - Live Backups with btrbk: Homelab Backup Strategy/Live Backups with btrbk.md
+    - Ransomware Resistant Backups with btrbk: Homelab Backup Strategy/Ransomware Resistant Backups with btrbk.md
+  - Knowledgebases with Outline:
+    - Installing Outline Knowledgebase: Knowledgebases with Outline/Installing Outline Knowledgebase.md
+  - Reverse Proxies with Caddy:
+    - Introduction: Reverse Proxies with Caddy/Introduction.md
+    - Basic Usage of Caddy: Reverse Proxies with Caddy/Basic Usage of Caddy.md
+    - Advanced Usage of Caddy: Reverse Proxies with Caddy/Advanced Usage of Caddy.md
+    - Adding Acme Certification: Reverse Proxies with Caddy/Adding Acme Certification.md
+  - Reverse Proxies with Nginx Proxy Manager:
+    - Introduction: Reverse Proxies with Nginx Proxy Manager/Introduction.md
+    - Installing Nginx Proxy Manager: Reverse Proxies with Nginx Proxy Manager/Installing Nginx Proxy Manager.md
+    - Enabling Reverse Proxy Features: Reverse Proxies with Nginx Proxy Manager/Enabling Reverse Proxy Features.md
+    - Adding Acme Certification: Reverse Proxies with Nginx Proxy Manager/Adding Acme Certification.md
+  - Remote Administration with Guacamole:
+    - Introduction: Remote Administration with Guacamole/Introduction.md
+    - Installing Guacamole: Remote Administration with Guacamole/Installing Guacamole.md
+    - Configuring Guacamole: Remote Administration with Guacamole/Configuring Guacamole.md
+    - Guacamole SSO Integration: Remote Administration with Guacamole/Guacamole SSO Integration.md
+  - Offsite Docker Backups with Kopia:
+    - Offsite Docker Backups with Kopia: Offsite Docker Backups with Kopia/Offsite Docker Backups with Kopia.md
+  - Authentication with Keycloak:
+    - Authentication with Keycloak: Authentication with Keycloak/Authentication with Keycloak.md
+    - Protecting Applications with SSO: Authentication with Keycloak/Protecting Applications with SSO.md
+  - Smart VPNS with Headscale:
+    - Introduction: Smart VPNS with Headscale/Introduction.md
+    - Setting up Headscale: Smart VPNS with Headscale/Setting up Headscale.md
+    - Configuring a Reverse Proxy: Smart VPNS with Headscale/Configuring a Reverse Proxy.md
+    - Configuring Tailscale on OPNSense: Smart VPNS with Headscale/Configuring Tailscale on OPNSense.md
+    - Configuring the Headscale UI: Smart VPNS with Headscale/Configuring the Headscale UI.md
+  - Homelabbing with Proxmox:
+    - Introduction: Homelabbing with Proxmox/Introduction.md
+    - Installing Proxmox: Homelabbing with Proxmox/Installing Proxmox.md
+    - Proxmox Configuration: Homelabbing with Proxmox/Proxmox Configuration.md
+    - Installing a Docker Environment: Homelabbing with Proxmox/Installing a Docker Environment.md
+    - Configuring the Docker Environment: Homelabbing with Proxmox/Configuring the Docker Environment.md
+    - Creating a Virtual NAS Appliance: Homelabbing with Proxmox/Creating a Virtual NAS Appliance.md
+    - Configuring a Virtual NAS Appliance: Homelabbing with Proxmox/Configuring a Virtual NAS Appliance.md
+    - Backing up Proxmox: Homelabbing with Proxmox/Backing up Proxmox.md
+    - Docker Offsite Backups: Homelabbing with Proxmox/Docker Offsite Backups.md
+  - Doing More with Docker:
+    - Introduction: Doing More with Docker/Introduction.md
+    - Installing Fedora: Doing More with Docker/Installing Fedora.md
+    - Setting up Docker: Doing More with Docker/Setting up Docker.md
+    - Designing our Workspace: Doing More with Docker/Designing our Workspace.md
+    - Deploying Source Control with Gitea: Doing More with Docker/Deploying Source Control with Gitea.md
+    - Reverse Proxies with Nginx Proxy Manager: Doing More with Docker/Reverse Proxies with Nginx Proxy Manager.md
+    - Leveraging Reverse Proxying: Doing More with Docker/Leveraging Reverse Proxying.md
+    - Let's Encrypt Certificates: Doing More with Docker/Let's Encrypt Certificates.md
+    - Backing up Docker: Doing More with Docker/Backing up Docker.md
+    - Central Authentication and SSO: Doing More with Docker/Central Authentication and SSO.md
+    - Deploying Outline Wiki: Doing More with Docker/Deploying Outline Wiki.md
+  - Linux Tips and Tricks:
+    - Using Remote VSCode: Linux Tips and Tricks/Using Remote VSCode.md
+    - Key Exchanges using Cockpit: Linux Tips and Tricks/Key Exchanges using Cockpit.md
+    - Navigating the Command Line in Cockpit: Linux Tips and Tricks/Navigating the Command Line in Cockpit.md
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - md_in_html

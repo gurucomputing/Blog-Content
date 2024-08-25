@@ -1,0 +1,5 @@
+FROM caddy:latest
+
+# Copy across the site
+COPY ./build/site /data/
+COPY ./configs/Caddyfile /etc/caddy/Caddyfile
