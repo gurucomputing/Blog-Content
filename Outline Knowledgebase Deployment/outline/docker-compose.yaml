@@ -1,0 +1,67 @@
+services:
+  outline:
+    container_name: outline
+    image: docker.getoutline.com/outlinewiki/outline:latest
+    restart: always
+    # ports:
+      # - "8080:8080"
+    volumes:
+      - ./container-data/outline:/var/lib/outline/data
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - PGSSLMODE=disable
+      - FILE_STORAGE=local
+      - FORCE_HTTPS=false
+      - SECRET_KEY=${SECRET_KEY}
+      - UTILS_SECRET=${UTILS_SECRET}
+      - DATABASE_URL=postgres://outline:${POSTGRES_PASSWORD}@outline-db:5432/outline
+      - REDIS_URL=redis://outline-redis:6379
+      - URL=${WIKI_URL}
+      - PORT=8080
+      - OIDC_CLIENT_ID=${OIDC_CLIENT_ID}
+      - OIDC_CLIENT_SECRET=${OIDC_CLIENT_SECRET}
+      - OIDC_AUTH_URI=${OIDC_AUTH_URI}
+      - OIDC_TOKEN_URI=${OIDC_TOKEN_URI}
+      - OIDC_USERINFO_URI=${OIDC_USERINFO_URI}
+      - OIDC_DISPLAY_NAME=${OIDC_DISPLAY_NAME}
+      - OIDC_USERNAME_CLAIM=email
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - outline-nw
+      - reverseproxy-nw
+
+  redis:
+    image: redis
+    container_name: outline-redis
+    restart: always
+    # ports:
+    #   - "6379:6379"
+    networks:
+      - outline-nw
+
+  postgres:
+    image: postgres
+    restart: always
+    container_name: outline-db
+    # ports:
+      # - "5432:5432"
+    volumes:
+      - ./container-data/db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-d", "outline", "-U", "user"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_USER=outline
+      - POSTGRES_DB=outline
+    networks:
+      - outline-nw
+
+networks:
+  outline-nw:
+  reverseproxy-nw:
+    external: true

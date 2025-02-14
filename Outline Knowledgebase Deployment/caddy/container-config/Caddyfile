@@ -1,0 +1,7 @@
+auth.<your-domain>.com {
+    reverse_proxy http://pocketid
+}
+
+kb.<your-domain>.com {
+    reverse_proxy http://outline:8080
+}

@@ -1,0 +1,20 @@
+services:
+  pocketid:
+    image: ghcr.io/stonith404/pocket-id
+    container_name: pocketid
+    restart: unless-stopped
+    # ports:
+      # - 3000:80
+    volumes:
+      - "./container-data:/app/backend/data"
+    environment:
+      - PUBLIC_APP_URL=https://auth.<your-domain>.com
+      - TRUST_PROXY=true
+      - PUID=1000
+      - PGID=1000
+    networks:
+      - reverseproxy-nw
+
+networks:
+  reverseproxy-nw:
+    external: true
